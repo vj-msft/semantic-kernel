@@ -1,0 +1,6 @@
+Someone has asked the following question about a {{$source}}:
+{{$input}}
+Please answer the above question given the following info:
+{{recall $input}}
+
+Answer:
