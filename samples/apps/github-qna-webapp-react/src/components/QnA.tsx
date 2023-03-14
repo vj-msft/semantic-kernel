@@ -28,6 +28,21 @@ const QnA: FC<IData> = ({ uri, project, branch, keyConfig, onBack }) => {
         "mine": false
     }]);
 
+    const getResponse = async (m: IChatMessage) => {
+        try {
+            var result = await sk.invokeAsync(keyConfig, { value: m.content, inputs: [{ key: 'source', value: "Github" }] }, 'QASkill', 'MemoryQuery');
+            const response : IChatMessage = {
+                "content": result.value,
+                "author": "GitHub Repo Bot",
+                "timestamp": new Date().toISOString(),
+                "mine": false
+            };
+            return response;
+        } catch (e) {
+            alert('Something went wrong.\n\nDetails:\n' + e);
+        }
+    }
+
     React.useEffect(() => {
         chatBottomRef.current?.scrollIntoView({ behavior: 'smooth' })
     }, [isBusy]);
@@ -56,7 +71,12 @@ const QnA: FC<IData> = ({ uri, project, branch, keyConfig, onBack }) => {
                 </div>
                 <div style={{ gridArea: 'footer', padding: '1rem 0', borderTop: '1px solid #ccc' }}>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
-                        <ChatInput onSubmit={m => { setIsBusy(true); setChatHistory([...chatHistory, m]); setIsBusy(false); }} />
+                        <ChatInput onSubmit={async m => {
+                            setIsBusy(true);
+                            const response = await getResponse(m);
+                            setChatHistory([...chatHistory, m, response!]);
+                            setIsBusy(false);
+                        }} />
                     </div>
                 </div>
             </div>

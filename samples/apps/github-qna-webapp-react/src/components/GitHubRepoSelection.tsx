@@ -34,9 +34,9 @@ const GitHubProjectSelection: FC<IData> = ({ uri, keyConfig, onLoadProject, onBa
         try {
             var result = await sk.invokeAsync(keyConfig, { value: url, inputs: [{ key: 'filePath', value: path }] }, 'WebFileDownloadSkill', 'DownloadToFile');
             setIsLoaded(true);
-        } catch {
+        } catch (e) {
             setIsLoadError(true);
-            alert('Something went wrong. Please check that the function is running and accessible from this location.');
+            alert('Something went wrong.\n\nDetails:\n' + e);
         }
     }
 
@@ -58,7 +58,7 @@ const GitHubProjectSelection: FC<IData> = ({ uri, keyConfig, onLoadProject, onBa
                 <div>
                     <Spinner />
                     <Body1>
-                        Downloading respository...
+                        Downloading repository...
                     </Body1>
                 </div>
                 :
