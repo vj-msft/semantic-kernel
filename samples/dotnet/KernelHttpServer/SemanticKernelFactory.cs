@@ -2,6 +2,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using KernelHttpServer.Config;
 using KernelHttpServer.Utils;
 using Microsoft.Azure.Functions.Worker.Http;
@@ -38,7 +39,7 @@ internal static class SemanticKernelFactory
 
         KernelBuilder builder = Kernel.Builder;
         builder = _ConfigureKernelBuilder(apiConfig, builder, memoryStore);
-        return _CompleteKernelSetup(req, builder, logger, skillsToLoad);
+        return _CompleteKernelSetupAsync(req, builder, logger, skillsToLoad).Result;
     }
 
     private static KernelBuilder _ConfigureKernelBuilder(ApiKeyConfig config, KernelBuilder builder, IMemoryStore<float>? memoryStore)
@@ -75,7 +76,7 @@ internal static class SemanticKernelFactory
         return builder;
     }
 
-    private static IKernel _CompleteKernelSetup(HttpRequestData req, KernelBuilder builder, ILogger logger, IEnumerable<string>? skillsToLoad = null)
+    private static async Task<IKernel> _CompleteKernelSetupAsync(HttpRequestData req, KernelBuilder builder, ILogger logger, IEnumerable<string>? skillsToLoad = null)
     {
         IKernel kernel = builder.Build();
 
@@ -91,6 +92,7 @@ internal static class SemanticKernelFactory
         if (kernel.Config.DefaultEmbeddingsBackend != null)
         {
             kernel.RegisterTextMemory();
+            await kernel.TempPopulateMemoryStoreAsync();
         }
 
         return kernel;
