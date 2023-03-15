@@ -30,7 +30,7 @@ const QnA: FC<IData> = ({ uri, project, branch, keyConfig, onBack }) => {
 
     const getResponse = async (m: IChatMessage) => {
         try {
-            var result = await sk.invokeAsync(keyConfig, { value: m.content, inputs: [{ key: 'source', value: "Github" }] }, 'QASkill', 'MemoryQuery');
+            var result = await sk.invokeAsync(keyConfig, { value: m.content, inputs: [{ key: 'relevance', value: "0.2"}, {key: 'collection', value: 'github'}] }, 'QASkill', 'MemoryQuery');
             const response : IChatMessage = {
                 "content": result.value,
                 "author": "GitHub Repo Bot",
