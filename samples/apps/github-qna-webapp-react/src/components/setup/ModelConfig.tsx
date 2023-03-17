@@ -58,8 +58,8 @@ const ModelConfig: FC<IData> = ({
                     headers: isOpenAI
                         ? { Authorization: `Bearer ${apiKey}` }
                         : {
-                            'api-key': apiKey,
-                        },
+                              'api-key': apiKey,
+                          },
                 };
 
                 const onFailure = (errorMessage?: string) => {

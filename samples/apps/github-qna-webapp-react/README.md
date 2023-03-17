@@ -15,7 +15,7 @@
 
 ## About the GitHub Repo Q&A Bot Sample
 
-The GitHub Repo Q&A Bot sample allows you to pull in data from a public GitHub repo into a local memory store in order to ask questions about the project and to get answers about it.  The sample highlights how [memory](TODO Link to memory) and [embeddings](TODO Link to embeddings) work along with X SK Functions when the size of the data is larger than the allowed token limited.  Each SK function will call Open AI to perform the tasks you ask about.​
+The GitHub Repo Q&A Bot sample allows you to pull in data from a public GitHub repo into a local memory store in order to ask questions about the project and to get answers about it. The sample highlights how [memory](TODO Link to memory) and [embeddings](TODO Link to embeddings) work along with X SK Functions when the size of the data is larger than the allowed token limited. Each SK function will call Open AI to perform the tasks you ask about.​
 
 > [!CAUTION]
 > Each function will call Open AI which will use tokens that you will be billed for.
@@ -26,5 +26,6 @@ Create Skills and SK functions: Check out the [documentation](https://aka.ms/sk/
 
 Join the community: Join our [Discord community](https://aka.ms/SKDiscord) to share ideas and get help​.
 
-Contribute: We need your help to make this the best it can be.  Learn how you can [contribute](https://github.com/microsoft/semantic-kernel/blob/main/CONTRIBUTING.md) to this project.​
+Contribute: We need your help to make this the best it can be. Learn how you can [contribute](https://github.com/microsoft/semantic-kernel/blob/main/CONTRIBUTING.md) to this project.​
+
 ## Troubleshooting Steps

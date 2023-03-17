@@ -16,23 +16,35 @@ export interface ITipGroup {
 }
 
 interface IData {
-    tips: ITipGroup[]
+    tips: ITipGroup[];
 }
 
 const QuickTips: FC<IData> = ({ tips }) => {
-
     return (
-        <div style={{ paddingTop: 48, paddingLeft: 36, paddingBottom: 2, gap: 15, display: 'flex', flexDirection: 'column', alignItems: 'start' }}>
+        <div
+            style={{
+                paddingTop: 48,
+                paddingLeft: 36,
+                paddingBottom: 2,
+                gap: 15,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'start',
+            }}
+        >
             <div style={{ display: 'flex', flexDirection: 'row', gap: 10, alignItems: 'center' }}>
-                <Lightbulb24Regular color='#AA0055' filled /><Subtitle1>Quick Tips</Subtitle1>
+                <Lightbulb24Regular color="#AA0055" filled />
+                <Subtitle1>Quick Tips</Subtitle1>
             </div>
 
             <div>
                 <hr style={{ width: 288, color: '#E0E0E0' }} />
             </div>
-            {tips.map((t, idx) => <QuickTipGroup key={idx} tipGroup={t} />)}
+            {tips.map((t, idx) => (
+                <QuickTipGroup key={idx} tipGroup={t} />
+            ))}
         </div>
     );
-}
+};
 
 export default QuickTips;
