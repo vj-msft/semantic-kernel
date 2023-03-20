@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 using System.Threading.Tasks;
@@ -10,8 +11,8 @@ using Microsoft.SemanticKernel;
 using Microsoft.SemanticKernel.KernelExtensions;
 using Microsoft.SemanticKernel.Memory;
 using Microsoft.SemanticKernel.Orchestration;
+using Microsoft.SemanticKernel.SemanticFunctions.Partitioning;
 using Microsoft.SemanticKernel.SkillDefinition;
-using Microsoft.SemanticKernel.Skills.Document;
 using Microsoft.SemanticKernel.Skills.Web;
 
 /// <summary>
@@ -64,7 +65,6 @@ public class GitHubSkill
     private readonly ISKFunction _summarizeCodeFunction;
     private readonly IKernel _kernel;
     private readonly WebFileDownloadSkill _downloadSkill;
-    private readonly DocumentSkill _documentSkill;
     private readonly ILogger<GitHubSkill> _logger;
 
     internal const string SummarizeCodeSnippetDefinition =
@@ -86,11 +86,10 @@ BEGIN SUMMARY:
     /// <param name="downloadSkill">Instance of WebFileDownloadSkill used to download web files</param>
     /// <param name="documentSkill">Instance of DocumentSkill used to read files</param>
     /// <param name="logger">Optional logger</param>
-    public GitHubSkill(IKernel kernel, WebFileDownloadSkill downloadSkill, DocumentSkill documentSkill, ILogger<GitHubSkill>? logger = null)
+    public GitHubSkill(IKernel kernel, WebFileDownloadSkill downloadSkill, ILogger<GitHubSkill>? logger = null)
     {
         this._kernel = kernel;
         this._downloadSkill = downloadSkill;
-        this._documentSkill = documentSkill;
         this._logger = logger ?? NullLogger<GitHubSkill>.Instance;
 
         this._summarizeCodeFunction = kernel.CreateSemanticFunction(
@@ -164,18 +163,46 @@ BEGIN SUMMARY:
 
         if (code != null && code.Length > 0)
         {
-            string text;
             if (code.Length > MaxFileSize)
             {
-                var context = await this._summarizeCodeFunction.InvokeAsync(code);
-                var result = context.Variables.ToString();
-                text = $"{result} File:{repositoryUri}/blob/{repositoryBranch}/{fileUri}";
+                var extension = new FileInfo(filePath).Extension;
+
+                List<string> lines;
+                List<string> paragraphs;
+                
+                switch (extension)
+                {                                    
+                    case ".md":
+                    {
+                        lines = SemanticTextPartitioner.SplitMarkDownLines(code, MaxTokens);
+                        paragraphs = SemanticTextPartitioner.SplitMarkdownParagraphs(lines, MaxTokens);
+
+                        break;
+                    }
+                    default:
+                    {
+                        lines = SemanticTextPartitioner.SplitPlainTextLines(code, MaxTokens);
+                        paragraphs = SemanticTextPartitioner.SplitPlainTextParagraphs(lines, MaxTokens);
+
+                        break;
+                    }
+                }
+
+                foreach (var paragraph in paragraphs)
+                {                   
+                    await this._kernel.Memory.SaveInformationAsync(
+                        $"{repositoryUri}-{repositoryBranch}",
+                        text: $"{paragraph} File:{repositoryUri}/blob/{repositoryBranch}/{fileUri}",
+                        id: fileUri);
+                }
             }
             else
             {
-                text = $"{code} File:{repositoryUri}/blob/{repositoryBranch}/{fileUri}";
-            }
-            await this._kernel.Memory.SaveInformationAsync($"{repositoryUri}-{repositoryBranch}", text: text, id: fileUri);
+                await this._kernel.Memory.SaveInformationAsync(
+                    $"{repositoryUri}-{repositoryBranch}",
+                    text: $"{code} File:{repositoryUri}/blob/{repositoryBranch}/{fileUri}",
+                    id: fileUri);
+            }            
         }
     }
 
