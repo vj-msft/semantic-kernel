@@ -54,6 +54,18 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KernelBuilder", "..\samples
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GitHubSkills", "..\samples\dotnet\github-skills\GitHubSkills.csproj", "{39E5F0F6-8B36-4ECA-A5F6-FC7522DC2ECF}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "multi-language-skills", "multi-language-skills", "{0E881C20-29A5-454D-97D0-9FEC762BBEFF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PythonSkillRunner", "..\samples\dotnet\PythonSkillRunner\PythonSkillRunner.csproj", "{EC75BE86-4729-41A5-ADC5-F6761604A425}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CPlusPlusSkillRunner", "..\samples\dotnet\CPlusPlusSkillRunner\CPlusPlusSkillRunner.csproj", "{09C2957E-4313-47B3-9340-4953CBF38CF9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JavascriptSkillRunner", "..\samples\dotnet\JavascriptSkillRunner\JavascriptSkillRunner.csproj", "{8FBB03E4-7402-40D3-8A8A-BA1F327F6BF8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JavaSkillRunner", "..\samples\dotnet\JavaSkillRunner\JavaSkillRunner.csproj", "{5EB48620-02BE-4143-ABF8-F415D413EFE7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotnetReferenceSkill", "..\samples\dotnet\DotnetReferenceSkill\DotnetReferenceSkill.csproj", "{D49FC00D-3102-43B6-8120-093EF2FACA03}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -116,6 +128,26 @@ Global
 		{39E5F0F6-8B36-4ECA-A5F6-FC7522DC2ECF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{39E5F0F6-8B36-4ECA-A5F6-FC7522DC2ECF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{39E5F0F6-8B36-4ECA-A5F6-FC7522DC2ECF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC75BE86-4729-41A5-ADC5-F6761604A425}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC75BE86-4729-41A5-ADC5-F6761604A425}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC75BE86-4729-41A5-ADC5-F6761604A425}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC75BE86-4729-41A5-ADC5-F6761604A425}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09C2957E-4313-47B3-9340-4953CBF38CF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09C2957E-4313-47B3-9340-4953CBF38CF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09C2957E-4313-47B3-9340-4953CBF38CF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09C2957E-4313-47B3-9340-4953CBF38CF9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FBB03E4-7402-40D3-8A8A-BA1F327F6BF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FBB03E4-7402-40D3-8A8A-BA1F327F6BF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FBB03E4-7402-40D3-8A8A-BA1F327F6BF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FBB03E4-7402-40D3-8A8A-BA1F327F6BF8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5EB48620-02BE-4143-ABF8-F415D413EFE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5EB48620-02BE-4143-ABF8-F415D413EFE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5EB48620-02BE-4143-ABF8-F415D413EFE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5EB48620-02BE-4143-ABF8-F415D413EFE7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D49FC00D-3102-43B6-8120-093EF2FACA03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D49FC00D-3102-43B6-8120-093EF2FACA03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D49FC00D-3102-43B6-8120-093EF2FACA03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D49FC00D-3102-43B6-8120-093EF2FACA03}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -137,6 +169,11 @@ Global
 		{F4243136-252A-4459-A7C4-EE8C056D6B0B} = {158A4E5E-AEE0-4D60-83C7-8E089B2D881D}
 		{A52818AC-57FB-495F-818F-9E1E7BC5618C} = {FA3720F1-C99A-49B2-9577-A940257098BF}
 		{39E5F0F6-8B36-4ECA-A5F6-FC7522DC2ECF} = {FA3720F1-C99A-49B2-9577-A940257098BF}
+		{EC75BE86-4729-41A5-ADC5-F6761604A425} = {0E881C20-29A5-454D-97D0-9FEC762BBEFF}
+		{09C2957E-4313-47B3-9340-4953CBF38CF9} = {0E881C20-29A5-454D-97D0-9FEC762BBEFF}
+		{8FBB03E4-7402-40D3-8A8A-BA1F327F6BF8} = {0E881C20-29A5-454D-97D0-9FEC762BBEFF}
+		{5EB48620-02BE-4143-ABF8-F415D413EFE7} = {0E881C20-29A5-454D-97D0-9FEC762BBEFF}
+		{D49FC00D-3102-43B6-8120-093EF2FACA03} = {0E881C20-29A5-454D-97D0-9FEC762BBEFF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FBDC56A3-86AD-4323-AA0F-201E59123B83}
