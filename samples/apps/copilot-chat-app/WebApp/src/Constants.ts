@@ -6,8 +6,8 @@ export const Constants = {
     msal: {
         method: 'redirect', // 'redirect' | 'popup'
         auth: {
-            clientId: import.meta.env.VITE_REACT_APP_CHAT_CLIENT_ID as string, 
-            authority: 'https://login.microsoftonline.com/common',
+            clientId: process.env.REACT_APP_CHAT_CLIENT_ID as string, 
+            authority: `https://login.microsoftonline.com/common`,
         },
         cache: {
             cacheLocation: 'localStorage',
@@ -53,7 +53,7 @@ export const Constants = {
             id: 'bot',
             fullName: 'SK Chatbot',
             emailAddress: '',
-            photo: '/assets/logo-black-512x512.png',
+            photo: '/assets/bot-icon-1.png',
         },
         fileExtension: 'skcb',
         typingIndicatorTimeoutMs: 5000,
