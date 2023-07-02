@@ -37,8 +37,13 @@ sk.CreateSemanticFunction(DEGREES_OF_SEPARATION_PROMPT,
 //TODO: load your python skill here
 //currently loading a skill that will pull a random activity from an API.
 //We will compare the activity to the one from the LLM and return true if they match, false if not
-var randomActivitySkill = new RandomActivitySkill();
-sk.ImportSkill(randomActivitySkill, nameof(RandomActivitySkill));
+
+//create object for JavascriptSkill
+var jsSkill = new JavascriptSkill();
+sk.ImportSkill(jsSkill, nameof(JavascriptSkill));
+
+/*var randomActivitySkill = new RandomActivitySkill();
+sk.ImportSkill(randomActivitySkill, nameof(RandomActivitySkill));*/
 
 var thingiliketodo = "surf";
 var llmResult = string.Empty;
@@ -50,7 +55,7 @@ llmResult = llmRandomActivityResult.Result;
 Console.WriteLine("LLM suggested: " + llmResult);
 
 //ask the skill to find us a random activity via API
-var skillApiRandomActivityResult = await sk.RunAsync(sk.Skills.GetNativeFunction(nameof(RandomActivitySkill), "GetRandomActivity"));
+var skillApiRandomActivityResult = await sk.RunAsync(sk.Skills.GetNativeFunction(nameof(JavascriptSkill), "GetjsSkill"));
 apiResult = skillApiRandomActivityResult.Result;
 Console.WriteLine("Skill suggested: " + apiResult);
 

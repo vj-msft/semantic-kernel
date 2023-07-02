@@ -10,6 +10,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\dotnet\src\SemanticKernel\SemanticKernel.csproj" />
     <ProjectReference Include="..\DotnetReferenceSkill\DotnetReferenceSkill.csproj" />
+    <ProjectReference Include="..\javascript-skills\JavascriptSkills\JavascriptSkills.csproj" />
   </ItemGroup>
 
 </Project>
